@@ -1,7 +1,10 @@
 package pages;
 
+import core.UiHelper;
 import jdbc.manager.ArticleManager;
 import jdbc.model.Article;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,8 +18,7 @@ public class SearchResultPage extends BasePage {
     private List<WebElement> searchResult;
     @FindBy(xpath = "//div[@class='paging']//ul/li")
     private List<WebElement> pages;
-    @FindBy(xpath = "//div[@id='results_list_wrapper']/a/span[@class='result_info']/span[1]")
-    private List<WebElement> articleHeaders;
+    ;
     @FindBy(xpath = "//a[@class='next_page']")
     private WebElement nextButton;
 
@@ -26,21 +28,24 @@ public class SearchResultPage extends BasePage {
 
     private void createArticle() {
         this.articleManager = new ArticleManager();
-        for (int i = 0; i < searchResult.size(); i++) {
+        for (WebElement element : searchResult) {
             Article article = new Article();
-            String header = articleHeaders.get(i).getText();
-            article.setName(header);
-            article.setHref(searchResult.get(i).getAttribute("href"));
+            WebElement header = element.findElement(By.xpath(".//span/span[1]"));
+            article.setName(header.getText());
+            article.setHref(element.getAttribute("href"));
             this.articleManager.create(article);
         }
     }
 
     private void createArticleAndSwitchToNextPage() {
-        for (int i = 0; i < this.pages.size() - 1; i++) {
-            createArticle();
-            if (i != this.pages.size() - 2) {
-                this.nextButton.click();
+        try {
+            while (this.nextButton.isDisplayed()) {
+                createArticle();
+                UiHelper.clickOnWebElement(nextButton);
             }
+        } catch (NoSuchElementException e) {
+            createArticle();
+            return;
         }
     }
 

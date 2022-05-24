@@ -33,4 +33,11 @@ public class TestSpyurAm {
         homePage.doASearch("Գուլպա", "Գյումրի");
         searchResultPage.addResultsToDB();
     }
+
+    @Test
+    public void testDB3(){
+        homePage.get();
+        homePage.doASearchOnlyLocation("Վանաձոր ");
+        searchResultPage.addResultsToDB();
+    }
 }
