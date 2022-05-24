@@ -18,7 +18,6 @@ public class SearchResultPage extends BasePage {
     private List<WebElement> searchResult;
     @FindBy(xpath = "//div[@class='paging']//ul/li")
     private List<WebElement> pages;
-    ;
     @FindBy(xpath = "//a[@class='next_page']")
     private WebElement nextButton;
 
