@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -18,6 +19,8 @@ public class TestSpyurAm {
     public void testHomePage() {
         homePage.get();
         homePage.doASearch("Համակարգիչներ");
+        String searchName = searchResultPage.getSearchName();
+        Assert.assertEquals(searchName, "Համակարգիչներ");
     }
 
     @Test
@@ -25,6 +28,7 @@ public class TestSpyurAm {
         homePage.get();
         homePage.doASearch("Համակարգիչներ");
         searchResultPage.addResultsToDB();
+        Assert.assertEquals(searchResultPage.getNumberOfDBItems(), searchResultPage.getNumberOfAllResult());
     }
 
     @Test
@@ -32,12 +36,14 @@ public class TestSpyurAm {
         homePage.get();
         homePage.doASearch("Գուլպա", "Գյումրի");
         searchResultPage.addResultsToDB();
+        Assert.assertEquals(searchResultPage.getNumberOfDBItems(), searchResultPage.getNumberOfAllResult());
     }
 
     @Test
-    public void testDB3(){
+    public void testDB3() {
         homePage.get();
         homePage.doASearchOnlyLocation("Վանաձոր ");
         searchResultPage.addResultsToDB();
+        Assert.assertEquals(searchResultPage.getNumberOfDBItems(), searchResultPage.getNumberOfAllResult());
     }
 }

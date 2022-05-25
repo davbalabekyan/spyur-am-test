@@ -8,11 +8,13 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings(value = "all")
 public class SearchResultPage extends BasePage {
 
+    private List<Integer> allResultsOfSearch;
     private ArticleManager articleManager;
     @FindBy(xpath = "//div[@id='results_list_wrapper']/a")
     private List<WebElement> searchResult;
@@ -20,9 +22,21 @@ public class SearchResultPage extends BasePage {
     private List<WebElement> pages;
     @FindBy(xpath = "//a[@class='next_page']")
     private WebElement nextButton;
+    @FindBy(xpath = "//h1/span")
+    private WebElement searchResultName;
 
-    public int numberOfResult() {
-        return this.searchResult.size();
+    private int getNumberOfOnePageResult() {
+        return searchResult.size();
+    }
+
+    public int getNumberOfAllResult() {
+        if (this.pages.size() > 1) {
+            return allResultsOfSearch.get(0);
+        } else if (!(this.searchResult.isEmpty())) {
+            return getNumberOfOnePageResult();
+        } else {
+            throw new RuntimeException("There is'nt no results");
+        }
     }
 
     private void createArticle() {
@@ -37,14 +51,18 @@ public class SearchResultPage extends BasePage {
     }
 
     private void createArticleAndSwitchToNextPage() {
+        allResultsOfSearch = new ArrayList<>();
+        int numberOfSearchResult = allResultsOfSearch.size();
         try {
             while (this.nextButton.isDisplayed()) {
+                numberOfSearchResult += getNumberOfOnePageResult();
                 createArticle();
                 UiHelper.clickOnWebElement(nextButton);
             }
         } catch (NoSuchElementException e) {
+            numberOfSearchResult += getNumberOfOnePageResult();
+            allResultsOfSearch.add(numberOfSearchResult);
             createArticle();
-            return;
         }
     }
 
@@ -56,5 +74,14 @@ public class SearchResultPage extends BasePage {
         } else {
             throw new RuntimeException("There is'nt any page");
         }
+    }
+
+    public String getSearchName() {
+        return this.searchResultName.getText();
+    }
+
+    public int getNumberOfDBItems() {
+        List<Article> articles = articleManager.getAll();
+        return articles.size();
     }
 }

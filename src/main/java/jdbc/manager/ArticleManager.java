@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArticleManager implements Manager<Article, Integer> {
 
@@ -61,5 +63,25 @@ public class ArticleManager implements Manager<Article, Integer> {
             throw new RuntimeException("Oops, something went wrong during getById");
         }
         return article;
+    }
+
+    @Override
+    public List<Article> getAll() {
+        List<Article> articles = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM article";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Article article = new Article();
+                article.setId(resultSet.getInt("id"));
+                article.setName(resultSet.getString("name"));
+                article.setHref(resultSet.getString("href"));
+                articles.add(article);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Oops, something went wrong during getAll");
+        }
+        return articles;
     }
 }
