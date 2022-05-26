@@ -72,7 +72,7 @@ public class SearchResultPage extends BasePage {
         } else if (!(this.searchResult.isEmpty())) {
             createArticle();
         } else {
-            throw new RuntimeException("There is'nt any page");
+            throw new RuntimeException("There isn't any page");
         }
     }
 

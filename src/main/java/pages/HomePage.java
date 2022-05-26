@@ -14,6 +14,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitButton;
 
+    @Override
     protected String pageUrl() {
         return "https://www.spyur.am/am/home";
     }

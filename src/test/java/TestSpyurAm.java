@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.SearchResultPage;
 
-public class TestSpyurAm {
+public class TestSpyurAm extends BaseTest {
 
     private HomePage homePage;
     private SearchResultPage searchResultPage;
