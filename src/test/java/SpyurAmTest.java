@@ -1,11 +1,13 @@
 import coreTest.BaseTest;
 import helper_classes.MyListener;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.*;
 
+@SuppressWarnings(value = "all")
 @Listeners(MyListener.class)
 public class SpyurAmTest extends BaseTest {
 
@@ -27,7 +29,7 @@ public class SpyurAmTest extends BaseTest {
         homePage.get();
     }
 
-    @Test()
+    @Test(priority = 2)
     public void addSearchResultToDB() {
         homePage.doASearch("Համակարգիչներ");
         searchResultPage.addResultsToDB();
@@ -37,7 +39,7 @@ public class SpyurAmTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test()
+    @Test(priority = 2)
     public void addRestaurantsToDB() {
         homePage.openRestaurantsPage();
         restaurantsPage.addResultsToDB();
@@ -47,7 +49,7 @@ public class SpyurAmTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test()
+    @Test(priority = 2)
     public void addFurnitureToDB() {
         homePage.openFurniturePage();
         furniturePage.addResultsToDB();
@@ -57,7 +59,7 @@ public class SpyurAmTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test()
+    @Test(priority = 2)
     public void addHotelToDB() {
         homePage.openHotelsPage();
         hotelsPage.addResultsToDB();
@@ -67,49 +69,46 @@ public class SpyurAmTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test()
+    @Test(priority = 2)
     public void searchingWithOnlyWhatToLookForTest() {
-        System.out.println("Thread ID " + Thread.currentThread().getId());
         homePage.doASearch("Համակարգիչներ");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(furniturePage.getSearchName(), "Համակարգիչներ");
         searchResultPage.goToMainPage();
         softAssert.assertAll();
-
     }
 
-//    @Test
-//    public void changeLanguageToEnglishTest() {
-//        homePage.changeLanguage("Eng");
-//        Assert.assertEquals(homePage.getCurrentLanguage(), "Eng");
-//    }
-//
-//    @Test(priority = -1)
-//    public void changeLanguageToRussianTest() {
-//        homePage.changeLanguage("Rus");
-//        Assert.assertEquals(homePage.getCurrentLanguage(), "Rus");
-//    }
-//
-//    @Test(priority = 1)
-//    public void changeLanguageToRussianThenToArmenianTest() {
-//        SoftAssert softAssert = new SoftAssert();
-//        homePage.doASearch("Համակարգիչներ");
-//        searchResultPage.changeLanguage("Rus");
-//        softAssert.assertEquals(searchResultPage.getCurrentLanguage(), "Rus");
-//        searchResultPage.changeLanguage("Arm");
-//        softAssert.assertEquals(searchResultPage.getCurrentLanguage(), "Arm");
-//        searchResultPage.goToMainPage();
-//        softAssert.assertAll();
-//    }
-//
-//    @Test()
-//    public void usefulResourcesTest() {
-//        homePage.openLinksPage();
-////        usefulResourcesPage.createUsefulResources();
-//        SoftAssert softAssert = new SoftAssert();
-////        softAssert.assertEquals(usefulResourcesPage.getNumberOfDBItems(), usefulResourcesPage.getNumberOfLinks());
-//        softAssert.assertEquals(10, 10);
-//        usefulResourcesPage.goToMainPage();
-//        softAssert.assertAll();
-//    }
+    @Test
+    public void changeLanguageToEnglishTest() {
+        homePage.changeLanguage("Eng");
+        Assert.assertEquals(homePage.getCurrentLanguage(), "Eng");
+    }
+
+    @Test(priority = -1)
+    public void changeLanguageToRussianTest() {
+        homePage.changeLanguage("Rus");
+        Assert.assertEquals(homePage.getCurrentLanguage(), "Rus");
+    }
+
+    @Test(priority = 1)
+    public void changeLanguageToRussianThenToArmenianTest() {
+        homePage.doASearch("Համակարգիչներ");
+        searchResultPage.changeLanguage("Rus");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(searchResultPage.getCurrentLanguage(), "Rus");
+        searchResultPage.changeLanguage("Arm");
+        softAssert.assertEquals(searchResultPage.getCurrentLanguage(), "Arm");
+        searchResultPage.goToMainPage();
+        softAssert.assertAll();
+    }
+
+    @Test(priority = 2)
+    public void usefulResourcesTest() {
+        homePage.openLinksPage();
+        usefulResourcesPage.createUsefulResources();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(usefulResourcesPage.getNumberOfDBItems(), usefulResourcesPage.getNumberOfLinks());
+        usefulResourcesPage.goToMainPage();
+        softAssert.assertAll();
+    }
 }

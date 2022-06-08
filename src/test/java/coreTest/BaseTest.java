@@ -9,8 +9,8 @@ public class BaseTest {
 
     @Parameters("browserName")
     @BeforeTest
-    public synchronized void setup(String browserName) {
-            Driver.initializeDriver(browserName);
+    public void setup(String browserName) {
+        Driver.initializeDriver(browserName);
     }
 
     @Parameters("browserName")

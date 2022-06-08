@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+@SuppressWarnings(value = "all")
 public final class WaitHelper {
 
     private static final WebDriver driver = Driver.getDriverInstance();

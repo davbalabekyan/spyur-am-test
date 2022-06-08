@@ -1,6 +1,6 @@
 package core;
 
-import lombok.EqualsAndHashCode;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,7 +9,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
 
-@EqualsAndHashCode
 public final class Driver {
 
     private static WebDriver chromeDriver;
@@ -25,12 +24,13 @@ public final class Driver {
                 options.addArguments("--incognito");
                 options.addArguments("--start-maximized");
 
+                WebDriverManager.chromedriver().setup();
                 chromeDriver = new ChromeDriver(options);
-                chromeDriver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
+                chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             }
         } else if (browserName.equalsIgnoreCase("firefox")) {
             if (firefoxDriver == null) {
-                System.setProperty("webdriver.gecko.driver", "C:\\Users\\Art\\Desktop\\geckodriver-v0.31.0-win64\\geckodriver.exe");
+                WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("--incognito");
                 firefoxOptions.addArguments("--start-maximized");

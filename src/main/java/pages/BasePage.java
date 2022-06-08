@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+@SuppressWarnings(value = "all")
 abstract class BasePage {
 
     private final WebDriver driver;

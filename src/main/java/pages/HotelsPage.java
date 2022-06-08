@@ -32,7 +32,7 @@ public class HotelsPage extends BaseSearchPage {
     }
 
     private void createHotelAndSwitchToNextPage() {
-        while (UiHelper.isElementPresent(getBy())) {
+        while (UiHelper.isElementPresentBy(getBy())) {
             allResultsNumber += getNumberOfOnePageResult();
             createHotel();
             UiHelper.clickOnWebElement(nextButton);

@@ -33,7 +33,7 @@ public class SearchResultPage extends BaseSearchPage {
     }
 
     private void createArticleAndSwitchToNextPage() {
-        while (UiHelper.isElementPresent(getBy())) {
+        while (UiHelper.isElementPresentBy(getBy())) {
             allResultOfSearch += getNumberOfOnePageResult();
             createArticle();
             UiHelper.clickOnWebElement(nextButton);

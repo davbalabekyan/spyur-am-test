@@ -32,7 +32,7 @@ public class RestaurantsPage extends BaseSearchPage {
     }
 
     private void createRestaurantAndSwitchToNextPage() {
-        while (UiHelper.isElementPresent(getBy())) {
+        while (UiHelper.isElementPresentBy(getBy())) {
             allResultsNumber += getNumberOfOnePageResult();
             createRestaurant();
             UiHelper.clickOnWebElement(nextButton);

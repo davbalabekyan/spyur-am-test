@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+@SuppressWarnings(value = "all")
 public final class ActionHelper {
 
     private static final WebDriver driver = Driver.getDriverInstance();

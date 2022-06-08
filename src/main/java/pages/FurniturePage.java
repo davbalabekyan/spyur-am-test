@@ -32,7 +32,7 @@ public class FurniturePage extends BaseSearchPage {
     }
 
     private void createFurnitureAndSwitchToNextPage() {
-        while (UiHelper.isElementPresent(getBy())) {
+        while (UiHelper.isElementPresentBy(getBy())) {
             allResultsNumber += getNumberOfOnePageResult();
             createFurniture();
             UiHelper.clickOnWebElement(nextButton);
