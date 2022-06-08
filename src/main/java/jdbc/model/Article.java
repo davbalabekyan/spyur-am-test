@@ -2,10 +2,11 @@ package jdbc.model;
 
 import lombok.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 @ToString
 public class Article {
 

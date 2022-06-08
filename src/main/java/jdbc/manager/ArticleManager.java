@@ -84,4 +84,30 @@ public class ArticleManager implements Manager<Article, Integer> {
         }
         return articles;
     }
+
+    @Override
+    public void update(Article object) {
+        try {
+            String query = "UPDATE article SET name=?,href=? WHERE id=?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, object.getName());
+            statement.setString(2, object.getHref());
+            statement.setInt(3, object.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Oops, something went wrong during update");
+        }
+    }
+
+    @Override
+    public void delete(Integer id) {
+        try {
+            String query = "DELETE FROM article WHERE id=?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Oops, something went wrong during delete");
+        }
+    }
 }

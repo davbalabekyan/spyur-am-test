@@ -1,6 +1,6 @@
 package pages;
 
-import core.UiHelper;
+import helper_classes.UiHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,6 +13,14 @@ public class HomePage extends BasePage {
     private WebElement location;
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitButton;
+    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div[1]/div[1]/div/ul/li[4]/a")
+    private WebElement restaurantsPageButton;
+    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div[1]/div[1]/div/ul/li[7]/a")
+    private WebElement furniturePageButton;
+    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div[1]/div[1]/div/ul/li[5]/a")
+    private WebElement hotelPageButton;
+    @FindBy(xpath = "//ul[@class='menu_list']/li[8]/a")
+    private WebElement linksButton;
 
     @Override
     protected String pageUrl() {
@@ -40,5 +48,21 @@ public class HomePage extends BasePage {
     private void doASearchOnlyLocationInternal(final String whereToLookFor) {
         this.location.sendKeys(whereToLookFor);
         UiHelper.clickOnWebElement(submitButton);
+    }
+
+    public void openRestaurantsPage() {
+        UiHelper.clickOnWebElement(restaurantsPageButton);
+    }
+
+    public void openFurniturePage() {
+        UiHelper.clickOnWebElement(furniturePageButton);
+    }
+
+    public void openHotelsPage() {
+        UiHelper.clickOnWebElement(hotelPageButton);
+    }
+
+    public void openLinksPage() {
+        UiHelper.clickOnWebElement(linksButton);
     }
 }

@@ -2,7 +2,7 @@ package jdbc.manager;
 
 import java.util.List;
 
-public interface Manager<T ,E> {
+public interface Manager<T, E> {
 
     void create(T object);
 
@@ -11,4 +11,8 @@ public interface Manager<T ,E> {
     T getById(E id);
 
     List<T> getAll();
+
+    void update(T object);
+
+    void delete(E id);
 }

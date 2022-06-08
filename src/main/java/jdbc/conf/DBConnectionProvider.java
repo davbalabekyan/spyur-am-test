@@ -43,4 +43,3 @@ public class DBConnectionProvider {
         return connection;
     }
 }
-
