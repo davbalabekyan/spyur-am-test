@@ -20,21 +20,21 @@ public final class Driver {
     public static void initializeDriver(String browserName) {
         if (browserName.equalsIgnoreCase("chrome")) {
             if (chromeDriver == null) {
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--incognito");
-                options.addArguments("--start-maximized");
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--incognito");
+                chromeOptions.addArguments("--start-maximized");
 
                 WebDriverManager.chromedriver().setup();
-                chromeDriver = new ChromeDriver(options);
+                chromeDriver = new ChromeDriver(chromeOptions);
                 chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             }
         } else if (browserName.equalsIgnoreCase("firefox")) {
             if (firefoxDriver == null) {
-                WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("--incognito");
                 firefoxOptions.addArguments("--start-maximized");
 
+                WebDriverManager.firefoxdriver().setup();
                 firefoxDriver = new FirefoxDriver(firefoxOptions);
                 firefoxDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             }
