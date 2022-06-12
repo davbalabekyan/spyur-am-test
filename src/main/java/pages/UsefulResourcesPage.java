@@ -3,6 +3,7 @@ package pages;
 import jdbc.manager.UsefulResourceManager;
 import jdbc.model.UsefulResource;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,7 +18,8 @@ public class UsefulResourcesPage extends BaseSearchPage {
     @FindBy(xpath = "//div[@class='main_logo']/a")
     private WebElement homePageButton;
 
-    public UsefulResourcesPage() {
+    public UsefulResourcesPage(WebDriver webDriver) {
+        super(webDriver);
     }
 
     public void createUsefulResources() {

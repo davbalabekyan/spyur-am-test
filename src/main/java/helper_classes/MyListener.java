@@ -5,7 +5,6 @@ import org.testng.ITestListener;
 import org.testng.ITestNGListener;
 import org.testng.ITestResult;
 
-@SuppressWarnings(value = "all")
 public class MyListener implements ITestNGListener, ITestListener {
 
     @Override

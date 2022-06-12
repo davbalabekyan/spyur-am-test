@@ -4,6 +4,7 @@ import helper_classes.UiHelper;
 import jdbc.manager.HotelManager;
 import jdbc.model.Hotel;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,6 +21,10 @@ public class HotelsPage extends BaseSearchPage {
     private HotelManager hotelManager;
     @FindBy(xpath = "//div[@class='paging']//ul/li")
     private List<WebElement> pages;
+
+    public HotelsPage(WebDriver webDriver) {
+        super(webDriver);
+    }
 
     private void createHotel() {
         hotelManager = new HotelManager();

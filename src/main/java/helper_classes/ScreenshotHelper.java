@@ -11,11 +11,16 @@ import java.io.File;
 
 public class ScreenshotHelper {
 
-    private static final WebDriver driver = Driver.getDriverInstance();
+
+    private static WebDriver webDriver = null;
+//    todo get driver
+
+    private ScreenshotHelper() {
+    }
 
     @SneakyThrows
     public static void takeScreenshot() {
-        TakesScreenshot screenshot = (TakesScreenshot) driver;
+        TakesScreenshot screenshot = (TakesScreenshot) webDriver;
         File output = screenshot.getScreenshotAs(OutputType.FILE);
         String pathToSaveFile = "src/main/java/core/screenshots/" + System.currentTimeMillis() + ".png";
         File file = new File(pathToSaveFile);

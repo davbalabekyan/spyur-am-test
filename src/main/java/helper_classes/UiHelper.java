@@ -5,7 +5,8 @@ import org.openqa.selenium.*;
 
 public final class UiHelper {
 
-    private static final WebDriver driver = Driver.getDriverInstance();
+    private static WebDriver webDriver = null;
+//    todo get driver
 
     private UiHelper() {
     }
@@ -18,7 +19,7 @@ public final class UiHelper {
 
     public static boolean isElementPresentBy(By element) {
         try {
-            driver.findElement(element);
+            webDriver.findElement(element);
             return true;
         } catch (NoSuchElementException e) {
             return false;

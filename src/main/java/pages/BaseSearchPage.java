@@ -2,6 +2,7 @@ package pages;
 
 import helper_classes.UiHelper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -14,6 +15,10 @@ public abstract class BaseSearchPage extends BasePage {
     @FindBy(xpath = "//div[@class='main_logo']/a")
     private WebElement homePageButton;
 
+    public BaseSearchPage(WebDriver webDriver) {
+        super(webDriver);
+    }
+
     public String getSearchName() {
         return this.searchResultName.getText();
     }
@@ -25,4 +30,8 @@ public abstract class BaseSearchPage extends BasePage {
     public void goToMainPage() {
         UiHelper.clickOnWebElement(homePageButton);
     }
+
+//    protected abstract void createObject();
+//
+//    protected abstract void creatOIbjectAndSwitchNewPage();
 }

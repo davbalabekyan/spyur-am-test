@@ -4,6 +4,7 @@ import helper_classes.UiHelper;
 import jdbc.manager.ArticleManager;
 import jdbc.model.Article;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,6 +21,10 @@ public class SearchResultPage extends BaseSearchPage {
     private List<WebElement> pages;
     @FindBy(xpath = "//a[@class='next_page']")
     private WebElement nextButton;
+
+    public SearchResultPage(WebDriver webDriver) {
+        super(webDriver);
+    }
 
     private void createArticle() {
         this.articleManager = new ArticleManager();

@@ -12,8 +12,9 @@ import java.util.List;
 @SuppressWarnings(value = "all")
 public final class WaitHelper {
 
-    private static final WebDriver driver = Driver.getDriverInstance();
-    private static final Wait<WebDriver> wait = new WebDriverWait(driver, 5);
+    private static WebDriver webDriver = null;
+//    todo get driver
+    private static Wait<WebDriver> wait = new WebDriverWait(webDriver, 5);
 
     private WaitHelper() {
     }

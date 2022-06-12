@@ -4,6 +4,7 @@ import helper_classes.UiHelper;
 import jdbc.manager.RestaurantManager;
 import jdbc.model.Restaurant;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,6 +21,10 @@ public class RestaurantsPage extends BaseSearchPage {
     private RestaurantManager restaurantManager;
     @FindBy(xpath = "//div[@class='paging']//ul/li")
     private List<WebElement> pages;
+
+    public RestaurantsPage(WebDriver webDriver) {
+        super(webDriver);
+    }
 
     private void createRestaurant() {
         restaurantManager = new RestaurantManager();

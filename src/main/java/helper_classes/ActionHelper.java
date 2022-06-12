@@ -4,11 +4,14 @@ import core.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.internal.BaseTestMethod;
 
 @SuppressWarnings(value = "all")
 public final class ActionHelper {
 
-    private static final WebDriver driver = Driver.getDriverInstance();
+    private static WebDriver driver = null;
+
+//    todo get driver
     private static final Actions actions = new Actions(driver);
 
     private ActionHelper() {
