@@ -22,10 +22,6 @@ public class SearchResultPage extends BaseSearchPage {
     @FindBy(xpath = "//a[@class='next_page']")
     private WebElement nextButton;
 
-    public SearchResultPage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     private void createArticle() {
         this.articleManager = new ArticleManager();
         for (WebElement element : searchResult) {

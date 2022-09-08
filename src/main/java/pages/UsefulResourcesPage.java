@@ -18,10 +18,6 @@ public class UsefulResourcesPage extends BaseSearchPage {
     @FindBy(xpath = "//div[@class='main_logo']/a")
     private WebElement homePageButton;
 
-    public UsefulResourcesPage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     public void createUsefulResources() {
         manager = new UsefulResourceManager();
         for (WebElement element : webElementList) {

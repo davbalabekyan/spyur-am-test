@@ -23,10 +23,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//ul[@class='menu_list']/li[8]/a")
     private WebElement linksButton;
 
-    public HomePage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     @Override
     protected String pageUrl() {
         return "https://www.spyur.am/am/home";

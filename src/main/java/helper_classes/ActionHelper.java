@@ -1,17 +1,14 @@
 package helper_classes;
 
-import core.Driver;
+import core.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.internal.BaseTestMethod;
 
 @SuppressWarnings(value = "all")
 public final class ActionHelper {
 
-    private static WebDriver driver = null;
-
-//    todo get driver
+    private static WebDriver driver = DriverProvider.getDriver();
     private static final Actions actions = new Actions(driver);
 
     private ActionHelper() {

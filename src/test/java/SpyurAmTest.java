@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.*;
 
+import static org.testng.Assert.assertEquals;
+
 @SuppressWarnings(value = "all")
 @Listeners(MyListener.class)
 public class SpyurAmTest extends BaseTest {
@@ -20,98 +22,81 @@ public class SpyurAmTest extends BaseTest {
 
     @BeforeTest
     public void initPages() {
-        homePage = new HomePage(webDriver);
-        searchResultPage = new SearchResultPage(webDriver);
-        restaurantsPage = new RestaurantsPage(webDriver);
-        furniturePage = new FurniturePage(webDriver);
-        hotelsPage = new HotelsPage(webDriver);
-        usefulResourcesPage = new UsefulResourcesPage(webDriver);
+        homePage = new HomePage();
+        searchResultPage = new SearchResultPage();
+        restaurantsPage = new RestaurantsPage();
+        furniturePage = new FurniturePage();
+        hotelsPage = new HotelsPage();
+        usefulResourcesPage = new UsefulResourcesPage();
         homePage.get();
     }
 
     @Test(priority = 2)
-    public void addSearchResultToDB() {
-//        SoftAssert softAssert = new SoftAssert();
+    public void addSearchResultToDB() throws InterruptedException {
         homePage.doASearch("Համակարգիչներ");
         searchResultPage.addResultsToDB();
-//        softAssert.assertEquals(searchResultPage.getNumberOfDBItems(), searchResultPage.getNumberOfAllResult());
+        assertEquals(searchResultPage.getNumberOfDBItems(), searchResultPage.getNumberOfAllResult());
         searchResultPage.goToMainPage();
-        Assert.assertEquals(10,10);
-//        softAssert.assertAll();
     }
 
-//    @Test(priority = 2)
-//    public void addRestaurantsToDB() {
-////        SoftAssert softAssert = new SoftAssert();
-//        homePage.openRestaurantsPage();
-//        restaurantsPage.addResultsToDB();
-////        softAssert.assertEquals(restaurantsPage.getNumberOfDBItems(), restaurantsPage.getNumberOfAllResult());
-//        restaurantsPage.goToMainPage();
-//        Assert.assertEquals(10,10);
-////        softAssert.assertAll();
-//    }
+    @Test(priority = 2)
+    public void addRestaurantsToDB() {
+        homePage.openRestaurantsPage();
+        restaurantsPage.addResultsToDB();
+        assertEquals(restaurantsPage.getNumberOfDBItems(), restaurantsPage.getNumberOfAllResult());
+        restaurantsPage.goToMainPage();
+    }
 
-//    @Test(priority = 2)
-//    public void addFurnitureToDB() {
-////        SoftAssert softAssert = new SoftAssert();
-//        homePage.openFurniturePage();
-//        furniturePage.addResultsToDB();
-////        softAssert.assertEquals(furniturePage.getNumberOfDBItems(), furniturePage.getNumberOfAllResult());
-//        furniturePage.goToMainPage();
-//        Assert.assertEquals(10,10);
-////        softAssert.assertAll();
-//    }
+    @Test(priority = 2)
+    public void addFurnitureToDB() {
+        homePage.openFurniturePage();
+        furniturePage.addResultsToDB();
+        assertEquals(furniturePage.getNumberOfDBItems(), furniturePage.getNumberOfAllResult());
+        furniturePage.goToMainPage();
+    }
 
-//    @Test(priority = 2)
-//    public void addHotelToDB() {
-//        SoftAssert softAssert = new SoftAssert();
-//        homePage.openHotelsPage();
-//        hotelsPage.addResultsToDB();
-//        softAssert.assertEquals(hotelsPage.getNumberOfDBItems(), hotelsPage.getNumberOfAllResult());
-//        hotelsPage.goToMainPage();
-//        softAssert.assertAll();
-//    }
-//
-//    @Test(priority = 2)
-//    public void searchingWithOnlyWhatToLookForTest() {
-//        SoftAssert softAssert = new SoftAssert();
-//        homePage.doASearch("Համակարգիչներ");
-//        softAssert.assertEquals(furniturePage.getSearchName(), "Համակարգիչներ");
-//        searchResultPage.goToMainPage();
-//        softAssert.assertAll();
-//    }
+    @Test(priority = 2)
+    public void addHotelToDB() {
+        homePage.openHotelsPage();
+        hotelsPage.addResultsToDB();
+        assertEquals(hotelsPage.getNumberOfDBItems(), hotelsPage.getNumberOfAllResult());
+        hotelsPage.goToMainPage();
+    }
+
+    @Test(priority = 2)
+    public void searchingWithOnlyWhatToLookForTest() {
+        homePage.doASearch("Համակարգիչներ");
+        assertEquals(furniturePage.getSearchName(), "Համակարգիչներ");
+        searchResultPage.goToMainPage();
+    }
 
     @Test
     public void changeLanguageToEnglishTest() {
         homePage.changeLanguage("Eng");
-        Assert.assertEquals(homePage.getCurrentLanguage(), "Eng");
+        assertEquals(homePage.getCurrentLanguage(), "Eng");
     }
 
     @Test(priority = -1)
     public void changeLanguageToRussianTest() {
         homePage.changeLanguage("Rus");
-        Assert.assertEquals(homePage.getCurrentLanguage(), "Rus");
+        assertEquals(homePage.getCurrentLanguage(), "Rus");
     }
 
     @Test(priority = 1)
     public void changeLanguageToRussianThenToArmenianTest() {
-        SoftAssert softAssert = new SoftAssert();
         homePage.doASearch("Համակարգիչներ");
         searchResultPage.changeLanguage("Rus");
-        softAssert.assertEquals(searchResultPage.getCurrentLanguage(), "Rus");
+        assertEquals(searchResultPage.getCurrentLanguage(), "Rus");
         searchResultPage.changeLanguage("Arm");
-        softAssert.assertEquals(searchResultPage.getCurrentLanguage(), "Arm");
+        assertEquals(searchResultPage.getCurrentLanguage(), "Arm");
         searchResultPage.goToMainPage();
-        softAssert.assertAll();
     }
 
-//    @Test(priority = 2)
-//    public void usefulResourcesTest() {
-//        SoftAssert softAssert = new SoftAssert();
-//        homePage.openLinksPage();
-//        usefulResourcesPage.createUsefulResources();
-//        softAssert.assertEquals(usefulResourcesPage.getNumberOfDBItems(), usefulResourcesPage.getNumberOfLinks());
-//        usefulResourcesPage.goToMainPage();
-//        softAssert.assertAll();
-//    }
+    @Test(priority = 2)
+    public void usefulResourcesTest() {
+        homePage.openLinksPage();
+        usefulResourcesPage.createUsefulResources();
+        assertEquals(usefulResourcesPage.getNumberOfDBItems(), usefulResourcesPage.getNumberOfLinks());
+        usefulResourcesPage.goToMainPage();
+    }
 }

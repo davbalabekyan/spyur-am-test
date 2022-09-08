@@ -1,12 +1,11 @@
 package helper_classes;
 
-import core.Driver;
+import core.DriverProvider;
 import org.openqa.selenium.*;
 
 public final class UiHelper {
 
-    private static WebDriver webDriver = null;
-//    todo get driver
+    private static final WebDriver webDriver = DriverProvider.getDriver();
 
     private UiHelper() {
     }

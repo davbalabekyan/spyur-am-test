@@ -22,10 +22,6 @@ public class RestaurantsPage extends BaseSearchPage {
     @FindBy(xpath = "//div[@class='paging']//ul/li")
     private List<WebElement> pages;
 
-    public RestaurantsPage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     private void createRestaurant() {
         restaurantManager = new RestaurantManager();
         for (WebElement onePageResult : onePageResults) {

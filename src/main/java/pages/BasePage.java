@@ -1,6 +1,6 @@
 package pages;
 
-import core.Driver;
+import core.DriverProvider;
 import helper_classes.UiHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,15 +11,15 @@ import org.openqa.selenium.support.PageFactory;
 @SuppressWarnings(value = "all")
 abstract class BasePage {
 
-    private WebDriver webDriver;
+    private WebDriver driver;
     @FindBy(xpath = "//ul[contains(@class,'lg_list')]")
     private WebElement languageSelect;
     @FindBy(xpath = "//ul[contains(@class,'lg_list')]/li[@class='current']/a")
     private WebElement currentLanguage;
 
-    public BasePage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
+    public BasePage() {
+        driver = DriverProvider.getDriver();
+        PageFactory.initElements(driver, this);
     }
 
     protected String pageUrl() {
@@ -27,7 +27,7 @@ abstract class BasePage {
     }
 
     public void get() {
-        webDriver.get(pageUrl());
+        driver.get(pageUrl());
     }
 
     public void changeLanguage(String lang) {
@@ -42,6 +42,6 @@ abstract class BasePage {
     }
 
     public String getCurrentLUrl() {
-        return webDriver.getCurrentUrl();
+        return driver.getCurrentUrl();
     }
 }

@@ -1,20 +1,20 @@
 package helper_classes;
 
-import core.Driver;
+import core.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 @SuppressWarnings(value = "all")
 public final class WaitHelper {
 
-    private static WebDriver webDriver = null;
-//    todo get driver
-    private static Wait<WebDriver> wait = new WebDriverWait(webDriver, 5);
+    private static WebDriver driver = DriverProvider.getDriver();
+    private static Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
     private WaitHelper() {
     }

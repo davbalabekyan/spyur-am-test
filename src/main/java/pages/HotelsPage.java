@@ -22,10 +22,6 @@ public class HotelsPage extends BaseSearchPage {
     @FindBy(xpath = "//div[@class='paging']//ul/li")
     private List<WebElement> pages;
 
-    public HotelsPage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     private void createHotel() {
         hotelManager = new HotelManager();
         for (WebElement onePageResult : onePageResults) {

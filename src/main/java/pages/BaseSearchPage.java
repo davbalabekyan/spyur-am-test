@@ -15,10 +15,6 @@ public abstract class BaseSearchPage extends BasePage {
     @FindBy(xpath = "//div[@class='main_logo']/a")
     private WebElement homePageButton;
 
-    public BaseSearchPage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     public String getSearchName() {
         return this.searchResultName.getText();
     }
@@ -30,8 +26,4 @@ public abstract class BaseSearchPage extends BasePage {
     public void goToMainPage() {
         UiHelper.clickOnWebElement(homePageButton);
     }
-
-//    protected abstract void createObject();
-//
-//    protected abstract void creatOIbjectAndSwitchNewPage();
 }

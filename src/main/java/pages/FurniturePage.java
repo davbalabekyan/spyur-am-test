@@ -22,10 +22,6 @@ public class FurniturePage extends BaseSearchPage {
     @FindBy(xpath = "//div[@class='paging']//ul/li")
     private List<WebElement> pages;
 
-    public FurniturePage(WebDriver webDriver) {
-        super(webDriver);
-    }
-
     private void createFurniture() {
         furnitureManager = new FurnitureManager();
         for (WebElement onePageResult : onePageResults) {
@@ -55,36 +51,6 @@ public class FurniturePage extends BaseSearchPage {
             throw new RuntimeException("There isn't any page");
         }
     }
-
-//    protected void createObject() {
-//        furnitureManager = new FurnitureManager();
-//        for (WebElement onePageResult : onePageResults) {
-//            Furniture furniture = new Furniture();
-//            furniture.setName(onePageResult.findElement(By.xpath(".//span/span[1]")).getText());
-//            furniture.setHref(onePageResult.getAttribute("href"));
-//            furnitureManager.create(furniture);
-//        }
-//    }
-//
-//    protected void createObjectAndSwitchToNextPage() {
-//        while (UiHelper.isElementPresentBy(getBy())) {
-//            allResultsNumber += getNumberOfOnePageResult();
-//            createObject();
-//            UiHelper.clickOnWebElement(nextButton);
-//        }
-//        allResultsNumber += getNumberOfOnePageResult();
-//        createObject();
-//    }
-//
-//    public void addResultsToDB() {
-//        if (this.pages.size() > 1) {
-//            createObjectAndSwitchToNextPage();
-//        } else if (!(this.onePageResults.isEmpty())) {
-//            createObject();
-//        } else {
-//            throw new RuntimeException("There isn't any page");
-//        }
-//    }
 
     private int getNumberOfOnePageResult() {
         return onePageResults.size();

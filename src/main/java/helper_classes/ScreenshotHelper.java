@@ -1,6 +1,6 @@
 package helper_classes;
 
-import core.Driver;
+import core.DriverProvider;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -12,8 +12,7 @@ import java.io.File;
 public class ScreenshotHelper {
 
 
-    private static WebDriver webDriver = null;
-//    todo get driver
+    private static final WebDriver webDriver = DriverProvider.getDriver();
 
     private ScreenshotHelper() {
     }

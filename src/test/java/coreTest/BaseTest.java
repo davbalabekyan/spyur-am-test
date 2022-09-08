@@ -1,23 +1,20 @@
 package coreTest;
 
-import core.Driver;
+import core.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 public class BaseTest {
-    protected WebDriver webDriver;
 
-    @Parameters("browserName")
     @BeforeTest
-    public void setup(String browserName) {
-        Driver driver = new Driver();
-        webDriver = driver.getDriver(browserName);
+    public void setup() {
+        DriverProvider.getDriver();
     }
 
     @AfterSuite
     public void tearDown() {
-        webDriver.quit();
+        DriverProvider.quitDriver();
     }
 }
