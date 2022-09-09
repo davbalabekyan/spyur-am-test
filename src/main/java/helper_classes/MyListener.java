@@ -1,47 +1,33 @@
 package helper_classes;
 
-import org.testng.ITestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestListener;
 import org.testng.ITestNGListener;
 import org.testng.ITestResult;
 
 public class MyListener implements ITestNGListener, ITestListener {
 
+    private static final Logger log = LoggerFactory.getLogger(MyListener.class);
+
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        System.out.println(iTestResult.getMethod().getMethodName() +
-                " test start in thread " + Thread.currentThread().getId());
+        log.info(iTestResult.getMethod().getMethodName() + " test start");
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        System.out.println(iTestResult.getMethod().getMethodName() +
-                " test success in thread " + Thread.currentThread().getId());
+        log.info(iTestResult.getMethod().getMethodName() + " test success");
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println(iTestResult.getMethod().getMethodName() +
-                " test failed in thread " + Thread.currentThread().getId());
+        log.info(iTestResult.getMethod().getMethodName() + " test failed");
         ScreenshotHelper.takeScreenshot();
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        System.out.println(iTestResult.getMethod().getMethodName() +
-                " test skipped in thread " + Thread.currentThread().getId());
-    }
-
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
-    }
-
-    @Override
-    public void onStart(ITestContext iTestContext) {
-    }
-
-    @Override
-    public void onFinish(ITestContext iTestContext) {
+        log.info(iTestResult.getMethod().getMethodName() + " test skipped");
     }
 }

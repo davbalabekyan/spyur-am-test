@@ -1,10 +1,8 @@
 import coreTest.BaseTest;
 import helper_classes.MyListener;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import pages.*;
 
 import static org.testng.Assert.assertEquals;
@@ -34,7 +32,7 @@ public class SpyurAmTest extends BaseTest {
     @Test(priority = 2)
     public void addSearchResultToDB() throws InterruptedException {
         homePage.doASearch("Համակարգիչներ");
-        searchResultPage.addResultsToDB();
+//        searchResultPage.addResultsToDB();
         assertEquals(searchResultPage.getNumberOfDBItems(), searchResultPage.getNumberOfAllResult());
         searchResultPage.goToMainPage();
     }
