@@ -4,23 +4,14 @@ import helper_classes.UiHelper;
 import jdbc.manager.HotelManager;
 import jdbc.model.Hotel;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-@SuppressWarnings(value = "all")
 public class HotelsPage extends BaseSearchPage {
 
-    private int allResultsNumber;
-    @FindBy(xpath = "//div[@id='results_list_wrapper']/a")
-    private List<WebElement> onePageResults;
-    @FindBy(xpath = "//a[@class='next_page']")
-    private WebElement nextButton;
     private HotelManager hotelManager;
-    @FindBy(xpath = "//div[@class='paging']//ul/li")
-    private List<WebElement> pages;
 
     private void createHotel() {
         hotelManager = new HotelManager();
@@ -34,11 +25,9 @@ public class HotelsPage extends BaseSearchPage {
 
     private void createHotelAndSwitchToNextPage() {
         while (UiHelper.isElementPresentBy(getBy())) {
-            allResultsNumber += getNumberOfOnePageResult();
             createHotel();
             UiHelper.clickOnWebElement(nextButton);
         }
-        allResultsNumber += getNumberOfOnePageResult();
         createHotel();
     }
 
@@ -58,9 +47,5 @@ public class HotelsPage extends BaseSearchPage {
 
     public int getNumberOfDBItems() {
         return hotelManager.getAll().size();
-    }
-
-    public int getNumberOfAllResult() {
-        return allResultsNumber;
     }
 }

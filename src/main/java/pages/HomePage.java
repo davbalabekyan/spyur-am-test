@@ -1,27 +1,25 @@
 package pages;
 
 import helper_classes.UiHelper;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-@SuppressWarnings(value = "all")
 public class HomePage extends BasePage {
 
     @FindBy(xpath = "//input[@name='company_name']")
     private WebElement whatToLookFor;
     @FindBy(xpath = "//input[@name='addres']")
-    private WebElement location;
-    @FindBy(xpath = "//button[@type='submit']")
+    private WebElement searchLocationInput;
+    @FindBy(css = ".search_form button")
     private WebElement submitButton;
-    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div[1]/div[1]/div/ul/li[4]/a")
+    @FindBy(xpath = "//*[@class='row']/ul/li[4]")
     private WebElement restaurantsPageButton;
-    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div[1]/div[1]/div/ul/li[7]/a")
+    @FindBy(xpath = "//*[@class='row']/ul/li[7]")
     private WebElement furniturePageButton;
-    @FindBy(xpath = "/html/body/div[2]/div/div[2]/div/div[1]/div[1]/div/ul/li[5]/a")
+    @FindBy(xpath = "//*[@class='row']/ul/li[5]")
     private WebElement hotelPageButton;
-    @FindBy(xpath = "//ul[@class='menu_list']/li[8]/a")
-    private WebElement linksButton;
+    @FindBy(xpath = "//ul[@class='menu_list']/li[last()]/a")
+    private WebElement linksPageButton;
 
     @Override
     protected String pageUrl() {
@@ -29,7 +27,7 @@ public class HomePage extends BasePage {
     }
 
     public void doASearch(final String whatToLookFor, final String whereToFind) {
-        this.location.sendKeys(whereToFind);
+        UiHelper.sendKeys(this.searchLocationInput, whereToFind);
         doASearchInternal(whatToLookFor);
     }
 
@@ -42,12 +40,12 @@ public class HomePage extends BasePage {
     }
 
     private void doASearchInternal(final String whatToLookFor) {
-        this.whatToLookFor.sendKeys(whatToLookFor);
+        UiHelper.sendKeys(this.whatToLookFor, whatToLookFor);
         UiHelper.clickOnWebElement(submitButton);
     }
 
     private void doASearchOnlyLocationInternal(final String whereToLookFor) {
-        this.location.sendKeys(whereToLookFor);
+        UiHelper.sendKeys(this.searchLocationInput, whereToLookFor);
         UiHelper.clickOnWebElement(submitButton);
     }
 
@@ -64,6 +62,6 @@ public class HomePage extends BasePage {
     }
 
     public void openLinksPage() {
-        UiHelper.clickOnWebElement(linksButton);
+        UiHelper.clickOnWebElement(linksPageButton);
     }
 }

@@ -7,7 +7,6 @@ import pages.*;
 
 import static org.testng.Assert.assertEquals;
 
-@SuppressWarnings(value = "all")
 @Listeners(MyListener.class)
 public class SpyurAmTest extends BaseTest {
 
@@ -32,8 +31,7 @@ public class SpyurAmTest extends BaseTest {
     @Test(priority = 2)
     public void addSearchResultToDB() throws InterruptedException {
         homePage.doASearch("Համակարգիչներ");
-//        searchResultPage.addResultsToDB();
-        assertEquals(searchResultPage.getNumberOfDBItems(), searchResultPage.getNumberOfAllResult());
+        searchResultPage.addResultsToDB();
         searchResultPage.goToMainPage();
     }
 
@@ -41,7 +39,6 @@ public class SpyurAmTest extends BaseTest {
     public void addRestaurantsToDB() {
         homePage.openRestaurantsPage();
         restaurantsPage.addResultsToDB();
-        assertEquals(restaurantsPage.getNumberOfDBItems(), restaurantsPage.getNumberOfAllResult());
         restaurantsPage.goToMainPage();
     }
 
@@ -49,7 +46,6 @@ public class SpyurAmTest extends BaseTest {
     public void addFurnitureToDB() {
         homePage.openFurniturePage();
         furniturePage.addResultsToDB();
-        assertEquals(furniturePage.getNumberOfDBItems(), furniturePage.getNumberOfAllResult());
         furniturePage.goToMainPage();
     }
 
@@ -57,7 +53,6 @@ public class SpyurAmTest extends BaseTest {
     public void addHotelToDB() {
         homePage.openHotelsPage();
         hotelsPage.addResultsToDB();
-        assertEquals(hotelsPage.getNumberOfDBItems(), hotelsPage.getNumberOfAllResult());
         hotelsPage.goToMainPage();
     }
 

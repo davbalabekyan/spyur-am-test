@@ -14,7 +14,7 @@ public class UsefulResource {
         this.href = href;
     }
 
-    public UsefulResource(){
+    public UsefulResource() {
     }
 
     public int getId() {

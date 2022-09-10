@@ -4,23 +4,14 @@ import helper_classes.UiHelper;
 import jdbc.manager.RestaurantManager;
 import jdbc.model.Restaurant;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-@SuppressWarnings(value = "all")
 public class RestaurantsPage extends BaseSearchPage {
 
-    private int allResultsNumber;
-    @FindBy(xpath = "//div[@id='results_list_wrapper']/a")
-    private List<WebElement> onePageResults;
-    @FindBy(xpath = "//a[@class='next_page']")
-    private WebElement nextButton;
     private RestaurantManager restaurantManager;
-    @FindBy(xpath = "//div[@class='paging']//ul/li")
-    private List<WebElement> pages;
 
     private void createRestaurant() {
         restaurantManager = new RestaurantManager();
@@ -34,11 +25,9 @@ public class RestaurantsPage extends BaseSearchPage {
 
     private void createRestaurantAndSwitchToNextPage() {
         while (UiHelper.isElementPresentBy(getBy())) {
-            allResultsNumber += getNumberOfOnePageResult();
             createRestaurant();
             UiHelper.clickOnWebElement(nextButton);
         }
-        allResultsNumber += getNumberOfOnePageResult();
         createRestaurant();
     }
 
@@ -58,9 +47,5 @@ public class RestaurantsPage extends BaseSearchPage {
 
     public int getNumberOfDBItems() {
         return restaurantManager.getAll().size();
-    }
-
-    public int getNumberOfAllResult() {
-        return allResultsNumber;
     }
 }

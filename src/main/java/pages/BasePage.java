@@ -8,14 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-@SuppressWarnings(value = "all")
 abstract class BasePage {
 
-    private WebDriver driver;
     @FindBy(xpath = "//ul[contains(@class,'lg_list')]")
     private WebElement languageSelect;
     @FindBy(xpath = "//ul[contains(@class,'lg_list')]/li[@class='current']/a")
     private WebElement currentLanguage;
+    private final WebDriver driver;
+
 
     public BasePage() {
         driver = DriverProvider.getDriver();

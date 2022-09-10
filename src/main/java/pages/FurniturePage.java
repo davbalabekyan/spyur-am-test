@@ -4,23 +4,14 @@ import helper_classes.UiHelper;
 import jdbc.manager.FurnitureManager;
 import jdbc.model.Furniture;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-@SuppressWarnings(value = "all")
 public class FurniturePage extends BaseSearchPage {
 
-    private int allResultsNumber;
-    @FindBy(xpath = "//div[@id='results_list_wrapper']/a")
-    private List<WebElement> onePageResults;
-    @FindBy(xpath = "//a[@class='next_page']")
-    private WebElement nextButton;
     private FurnitureManager furnitureManager;
-    @FindBy(xpath = "//div[@class='paging']//ul/li")
-    private List<WebElement> pages;
 
     private void createFurniture() {
         furnitureManager = new FurnitureManager();
@@ -34,11 +25,9 @@ public class FurniturePage extends BaseSearchPage {
 
     private void createFurnitureAndSwitchToNextPage() {
         while (UiHelper.isElementPresentBy(getBy())) {
-            allResultsNumber += getNumberOfOnePageResult();
             createFurniture();
             UiHelper.clickOnWebElement(nextButton);
         }
-        allResultsNumber += getNumberOfOnePageResult();
         createFurniture();
     }
 
@@ -58,9 +47,5 @@ public class FurniturePage extends BaseSearchPage {
 
     public int getNumberOfDBItems() {
         return furnitureManager.getAll().size();
-    }
-
-    public int getNumberOfAllResult() {
-        return allResultsNumber;
     }
 }
